@@ -1,4 +1,4 @@
-# Copyright (c) 2015, 2017 YCSB contributors.
+# Copyright (c) 2015, 2024 YCSB contributors.
 # All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you
@@ -14,19 +14,33 @@
 # permissions and limitations under the License. See accompanying
 # LICENSE file.
 # For more info, see: http://EditorConfig.org
+
+# Top-level settings
 root = true
 
-[*.java]
+# Java files
+[*.{java}]
 indent_style = space
-indent_size = 2
+indent_size = 4
 continuation_indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
 
+# Markdown files
 [*.md]
 indent_style = space
 indent_size = 2
-continuation_indent_size = 4
+continuation_indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
 
-[*.xml]
+# XML files
+[*.{xml,html,xhtml,yml,yaml,json}]
 indent_style = space
 indent_size = 2
-continuation_indent_size = 4
+continuation_indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
