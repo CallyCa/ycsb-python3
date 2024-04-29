@@ -1,0 +1,17 @@
+{
+    "shell": {
+        "command": "",
+        "description": "Interactive mode",
+        "main": "site.ycsb.CommandLine"
+    },
+    "load": {
+        "command": "-load",
+        "description": "Execute the load phase",
+        "main": "site.ycsb.Client"
+    },
+    "run": {
+        "command": "-t",
+        "description": "Execute the transaction phase",
+        "main": "site.ycsb.Client"
+    }
+}

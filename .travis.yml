@@ -1,4 +1,4 @@
-# Copyright (c) 2010 Yahoo! Inc., 2012 - 2015 YCSB contributors. 
+# Copyright (c) 2010 Yahoo! Inc., 2012 - 2024 YCSB contributors. 
 # All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you
@@ -14,8 +14,8 @@
 # permissions and limitations under the License. See accompanying
 # LICENSE file.
 
-# more info here about TravisCI and Java projects
-# http://docs.travis-ci.com/user/languages/java/
+# More information about Travis CI and Java projects:
+# https://docs.travis-ci.com/user/languages/java/
 
 language: java
 
@@ -24,30 +24,34 @@ jdk:
   - openjdk11
   - oraclejdk11
 
+# Additional system dependencies
 addons:
   hosts:
     - myshorthost
   hostname: myshorthost
   postgresql: "9.5"
 
+# Installing dependencies
 install:
   - mvn -N io.takari:maven:0.7.7:wrapper -Dmaven=3.6.3
   - ./mvnw install -q -DskipTests=true
 
+# Running tests
 script: ./mvnw test -q
 
+# Preparing environment before running tests
 before_script:
-  - psql -c 'CREATE database test;' -U postgres
-  - psql -c 'CREATE TABLE usertable (YCSB_KEY VARCHAR(255) PRIMARY KEY not NULL, YCSB_VALUE JSONB not NULL);' -U postgres -d test
-  - psql -c 'GRANT ALL PRIVILEGES ON DATABASE test to postgres;' -U postgres
+  - psql -c 'CREATE DATABASE test;' -U postgres
+  - psql -c 'CREATE TABLE usertable (YCSB_KEY VARCHAR(255) PRIMARY KEY NOT NULL, YCSB_VALUE JSONB NOT NULL);' -U postgres -d test
+  - psql -c 'GRANT ALL PRIVILEGES ON DATABASE test TO postgres;' -U postgres
 
 # Services to start for tests.
 services:
-  - ignite
+  - mariadb
   - mongodb
   - postgresql
-# temporarily disable riak. failing, docs offline.
+# Temporarily disabled Riak as it's failing.
 #  - riak
 
-# Can't use container based infra because of hosts/hostname
+# Using sudo due to host/hostname requirements
 sudo: true

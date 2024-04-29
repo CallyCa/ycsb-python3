@@ -1,80 +1,132 @@
-<!--
-Copyright (c) 2010 Yahoo! Inc., 2012 - 2016 YCSB contributors.
-All rights reserved.
+# Python YCSB Client
 
-Licensed under the Apache License, Version 2.0 (the "License"); you
-may not use this file except in compliance with the License. You
-may obtain a copy of the License at
+This repository contains the Python 3 implementation of the Yahoo! Cloud Serving Benchmark (YCSB) client. It provides an interface to conduct performance benchmarks on different database systems.
 
-http://www.apache.org/licenses/LICENSE-2.0
+## Directory Structure
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-implied. See the License for the specific language governing
-permissions and limitations under the License. See accompanying
-LICENSE file.
--->
+Below is an overview of the main directories and files in this project:
 
-YCSB
-====================================
-[![Build Status](https://travis-ci.org/brianfrankcooper/YCSB.png?branch=master)](https://travis-ci.org/brianfrankcooper/YCSB)
+```
+ycsb-python3/
+│
+├── cli/                  # Command Line Interface utilities and main entry points
+│   ├── argument_parser.py
+│   ├── environment_configurator.py
+│   ├── __init__.py
+│   ├── usage.py
+│   └── ycsb_main.py
+│
+├── commands/             # Definitions of YCSB commands like load, run, and shell
+│   ├── __init__.py
+│   └── ycsb_command.py
+│
+├── databases/            # Database configurations and JSON definitions
+│   ├── database_loader.py
+│   ├── __init__.py
+│   └── json/
+│       ├── commands.json
+│       ├── databases.json
+│       ├── deprecated_clients.json
+│       └── options.json
+│
+├── executor/             # Execution logic for running YCSB commands
+│   ├── command_executor.py
+│   └── __init__.py
+│
+├── options/              # Configuration options for YCSB operations
+│   ├── __init__.py
+│   └── options.py
+│
+└── util/                 # Utility functions and classes
+    ├── classpath_configurator.py
+    ├── deprecated_clients.py
+    └── __init__.py
+```
 
+## Available Commands
 
+- `shell`: Enter the interactive mode.
+- `load`: Execute the load phase to populate the database.
+- `run`: Execute the transaction phase to benchmark the database.
 
-Links
------
-* To get here, use https://ycsb.site
-* [Our project docs](https://github.com/brianfrankcooper/YCSB/wiki)
-* [The original announcement from Yahoo!](https://labs.yahoo.com/news/yahoo-cloud-serving-benchmark/)
+## Configuration Options
 
-Getting Started
----------------
+- `-P file`: Specify the workload file.
+- `-p key=value`: Override a workload property.
+- `-s`: Print status updates to stderr.
+- `-target n`: Target operations per second (default: unthrottled).
+- `-threads n`: Number of client threads (default: 1).
+- `-cp path`: Additional Java classpath entries.
+- `-jvm-args args`: Additional JVM arguments.
 
-1. Download the [latest release of YCSB](https://github.com/brianfrankcooper/YCSB/releases/latest):
+## Getting Started
 
-    ```sh
-    curl -O --location https://github.com/brianfrankcooper/YCSB/releases/download/0.17.0/ycsb-0.17.0.tar.gz
-    tar xfvz ycsb-0.17.0.tar.gz
-    cd ycsb-0.17.0
-    ```
-    
-2. Set up a database to benchmark. There is a README file under each binding 
-   directory.
+### Prerequisites
 
-3. Run YCSB command. 
+Ensure you have Python 3.6 or later installed. Depending on the database you plan to benchmark, additional software may be required, such as Java for YCSB core functionalities.
 
-    On Linux:
-    ```sh
-    bin/ycsb.sh load basic -P workloads/workloada
-    bin/ycsb.sh run basic -P workloads/workloada
-    ```
+### Installation
 
-    On Windows:
-    ```bat
-    bin/ycsb.bat load basic -P workloads\workloada
-    bin/ycsb.bat run basic -P workloads\workloada
-    ```
+Clone the repository and navigate into the project directory:
 
-  Running the `ycsb` command without any argument will print the usage. 
-   
-  See https://github.com/brianfrankcooper/YCSB/wiki/Running-a-Workload
-  for a detailed documentation on how to run a workload.
+```bash
+git clone https://github.com/CallyCa/ycsb-python3.git
+cd ycsb-python3
+```
 
-  See https://github.com/brianfrankcooper/YCSB/wiki/Core-Properties for 
-  the list of available workload properties.
+### Running YCSB
 
+To run the YCSB client, use one of the following commands from the root directory of the project:
 
-Building from source
---------------------
+#### Load Phase
+
+```bash
+python -m cli.ycsb_main load -P workloads/workloada -p recordcount=1000000 -db site.ycsb.db.YourDbClient -s
+```
+
+#### Run Phase
+
+```bash
+python -m cli.ycsb_main run -P workloads/workloada -p operationcount=1000000 -db site.ycsb.db.YourDbClient -s
+```
+
+#### Interactive Shell
+
+```bash
+python -m cli.ycsb_main shell
+```
+
+Replace `site.ycsb.db.YourDbClient` with the appropriate database client class and adjust workload files as needed.
+
+#### Notes
+
+Running the `ycsb` command without any argument will print the usage.
+
+See <https://github.com/brianfrankcooper/YCSB/wiki/Running-a-Workload> for a detailed documentation on how to run a workload.
+
+See <https://github.com/brianfrankcooper/YCSB/wiki/Core-Properties> for the list of available workload properties.
+
+#### Building from source
 
 YCSB requires the use of Maven 3; if you use Maven 2, you may see [errors
 such as these](https://github.com/brianfrankcooper/YCSB/issues/406).
 
 To build the full distribution, with all database bindings:
 
-    mvn clean package
+```bash
+mvn clean package
+```
 
 To build a single database binding:
 
-    mvn -pl site.ycsb:mongodb-binding -am clean package
+```bash
+mvn -pl site.ycsb:mongodb-binding -am clean package
+```
+
+## Contributing
+
+Contributions are welcome. Please fork the repository and submit pull requests with your enhancements.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.txt).
