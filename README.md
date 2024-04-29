@@ -74,7 +74,7 @@ git clone https://github.com/CallyCa/ycsb-python3.git
 cd ycsb-python3
 ```
 
-### Running YCSB
+## Running YCSB
 
 To run the YCSB client, use one of the following commands from the root directory of the project:
 
@@ -96,6 +96,8 @@ python -m cli.ycsb_main run -P workloads/workloada -p operationcount=1000000 -db
 python -m cli.ycsb_main shell
 ```
 
+After executing any of these commands, a log file will be created in the root directory of the project under the directory `workload-logs`. The log file is named `command-executor.log` and contains information about the execution process.
+
 Replace `site.ycsb.db.YourDbClient` with the appropriate database client class and adjust workload files as needed.
 
 #### Notes
@@ -106,7 +108,7 @@ See <https://github.com/brianfrankcooper/YCSB/wiki/Running-a-Workload> for a det
 
 See <https://github.com/brianfrankcooper/YCSB/wiki/Core-Properties> for the list of available workload properties.
 
-#### Building from source
+## Building from source
 
 YCSB requires the use of Maven 3; if you use Maven 2, you may see [errors
 such as these](https://github.com/brianfrankcooper/YCSB/issues/406).
