@@ -7,7 +7,7 @@ This repository contains the Python 3 implementation of the Yahoo! Cloud Serving
 Below is an overview of the main directories and files in this project:
 
 ```
-ycsb-python3/
+ycsb-python3-client/
 │
 ├── cli/                  # Command Line Interface utilities and main entry points
 │   ├── argument_parser.py
@@ -81,19 +81,19 @@ To run the YCSB client, use one of the following commands from the root director
 #### Load Phase
 
 ```bash
-python -m cli.ycsb_main load -P workloads/workloada -p recordcount=1000000 -db site.ycsb.db.YourDbClient -s
+python -m ycsb-python3-client.cli.ycsb_main load -P workloads/workloada -p recordcount=1000000 -db site.ycsb.db.YourDbClient -s
 ```
 
 #### Run Phase
 
 ```bash
-python -m cli.ycsb_main run -P workloads/workloada -p operationcount=1000000 -db site.ycsb.db.YourDbClient -s
+python -m ycsb-python3-client.cli.ycsb_main run -P workloads/workloada -p operationcount=1000000 -db site.ycsb.db.YourDbClient -s
 ```
 
 #### Interactive Shell
 
 ```bash
-python -m cli.ycsb_main shell
+python -m ycsb-python3-client.cli.ycsb_main shell
 ```
 
 After executing any of these commands, a log file will be created in the root directory of the project under the directory `workload-logs`. The log file is named `command-executor.log` and contains information about the execution process.
