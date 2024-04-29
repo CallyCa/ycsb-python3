@@ -18,6 +18,8 @@
     "elasticsearch": "site.ycsb.db.ElasticsearchClient",
     "elasticsearch5": "site.ycsb.db.elasticsearch5.ElasticsearchClient",
     "elasticsearch5-rest": "site.ycsb.db.elasticsearch5.ElasticsearchRestClient",
+    "elasticsearch7": "site.ycsb.db.elasticsearch7.ElasticsearchClient",
+    "elasticsearch7-rest": "site.ycsb.db.elasticsearch7.ElasticsearchRestClient",
     "foundationdb" : "site.ycsb.db.foundationdb.FoundationDBClient",
     "geode"        : "site.ycsb.db.GeodeClient",
     "googlebigtable"  : "site.ycsb.db.GoogleBigtableClient",
@@ -50,5 +52,7 @@
     "solr7"        : "site.ycsb.db.solr7.SolrClient",
     "tarantool"    : "site.ycsb.db.TarantoolClient",
     "tablestore"   : "site.ycsb.db.tablestore.TableStoreClient",
-    "zookeeper"    : "site.ycsb.db.zookeeper.ZKClient"
+    "zookeeper"    : "site.ycsb.db.zookeeper.ZKClient",
+    "redisearch"   : "site.ycsb.db.RediSearchClient",
+    "redisjson2"   : "site.ycsb.db.RedisJSONClient"
 }
