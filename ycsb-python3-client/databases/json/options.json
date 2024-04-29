@@ -1,0 +1,9 @@
+{
+    "-P file": "Specify workload file",
+    "-p key=value": "Override workload property",
+    "-s": "Print status to stderr",
+    "-target n": "Target ops/sec (default: unthrottled)",
+    "-threads n": "Number of client threads (default: 1)",
+    "-cp path": "Additional Java classpath entries",
+    "-jvm-args args": "Additional arguments to the JVM"
+}

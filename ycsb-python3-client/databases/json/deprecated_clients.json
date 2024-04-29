@@ -1,0 +1,9 @@
+{
+    "deprecated_bindings":
+    [
+        "cassandra2",
+        "couchbase",
+        "hbase14",
+        "arangodb3"
+    ]
+}
